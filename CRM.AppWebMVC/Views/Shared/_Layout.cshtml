@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM.AppWebMVC</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+</head>
+<body class="flex h-screen bg-gray-100"> 
+    <!-- Sidebar -->
+    <aside x-data="{ isOpen: false }" :class="{ 'translate-x-0': isOpen, '-translate-x-full': !isOpen }" class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0">
+        <div class="flex h-full flex-col">
+            <div class="flex items-center justify-between px-4 py-6">
+                <a href="~/Home/Index" class="text-xl font-semibold text-gray-800">CRM.AppWebMVC</a>
+                <button x-on:click="isOpen = false" class="lg:hidden">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="flex-1 space-y-2 px-2">
+                <a href="~/Home/Index" class="flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-200">
+                    <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0-2a9 9 0 0118 0 9 9 0 01-18 0zm0 0l2 2m-2-2v3.5a9 9 0 019 9v3.5m0-3.5a9 9 0 009-9V10m0 0l2-2m0 0l-2-2"></path>
+                    </svg>
+                    Home
+                </a>
+                <a asp-area="" asp-controller="Customer" asp-action="Index" class="flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-200">
+                    <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v2h-5zM2 20h5v2H2zM7 10v-1a9 9 0 1118 0v1m-2 9H5a2 2 0 01-2-2v-5a2 2 0 012-2h14a2 2 0 012 2v5a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Clientes
+                </a>
+                <a asp-area="" asp-controller="User" asp-action="Index" class="flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-200">
+                    <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v2h-5zM2 20h5v2H2zM7 10v-1a9 9 0 1118 0v1m-2 9H5a2 2 0 01-2-2v-5a2 2 0 012-2h14a2 2 0 012 2v5a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Usuarios
+                </a>
+                <a href="~/Sucursal/Registrados" class="flex items-center rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-200">
+                    <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v2h-5zM2 20h5v2H2zM7 10v-1a9 9 0 1118 0v1m-2 9H5a2 2 0 01-2-2v-5a2 2 0 012-2h14a2 2 0 012 2v5a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Sucursal
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="flex flex-1 flex-col overflow-hidden">
+        <header class="bg-white shadow-sm">
+            <div class="flex items-center justify-between px-4 py-4 lg:px-6">
+                <button x-on:click="isOpen = !isOpen" class="text-gray-500 lg:hidden">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <div class="text-xl font-semibold text-gray-800 lg:hidden">CRM.AppWebMVC</div>
+                <div><!-- Add any header content here --></div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-4">
+            @RenderBody()
+        </main>
+
+       
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
