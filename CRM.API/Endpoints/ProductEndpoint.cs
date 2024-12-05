@@ -10,12 +10,12 @@ namespace CRM.API.Endpoints
         public static void AddProductEndpoints(this WebApplication app)
         {
             // Endpoint para buscar productos
-            app.MapPost("/product/search", async (SearchQueryProductDTO productDTO, ProductDAL productDAL) =>
+            app.MapPost("/product/search", async (SearchResultProductDTO productDTO, SearchQueryProductDTO productDTO1, ProductDAL productDAL) =>
             {
                 // Inicializamos el objeto 'Product' con los datos proporcionados
                 var product = new Product
                 {
-                    Name = productDTO.Data.FirstOrDefault()?.Name ?? string.Empty,
+                    Name = productDTO.data.FirstOrDefault()?.Name ?? string.Empty,
                     Price = double.Parse(productDTO.data?.FirstOrDefault()?.Price.ToString() ?? string.Empty)
                 };
 
@@ -25,13 +25,13 @@ namespace CRM.API.Endpoints
                 // Realizamos la búsqueda y, si es necesario, contamos las filas
                 if (productDTO.CountRow == 2)
                 {
-                    products = await productDAL.Search(product, skip: productDTO.Skip, take:productDTO.Take);
+                    products = await productDAL.Search(product, skip: productDTO1.Skip, take:productDTO1.Take);
                     if (products.Any())
                         countRow = await productDAL.CountSearch(product);
                 }
                 else
                 {
-                    products = await productDAL.Search(product, skip: productDTO.Skip, take: productDTO.Take);
+                    products = await productDAL.Search(product, skip: productDTO1.Skip, take: productDTO1.Take);
                 }
 
                 var productResult = new SearchResultProductDTO

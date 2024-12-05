@@ -26,6 +26,7 @@ namespace CRM.DTOs.ProuctDTOs
         /// 1 = No se cuenta los resultados de la busqueda
         /// 2= Cuenta los resultados de la busqueda
         /// </summary>
+
         public byte SendRowCount { get; set; }
     }
 }

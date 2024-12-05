@@ -1,5 +1,6 @@
 ﻿using CRM.API.Models.EN;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 
 namespace CRM.API.Models.DAL
@@ -65,8 +66,8 @@ namespace CRM.API.Models.DAL
             var query = _context.Products.AsQueryable();
             if (!string.IsNullOrWhiteSpace(product.Name))
                 query = query.Where(s => s.Name.Contains(product.Name));
-            if (!string.IsNullOrWhiteSpace(product.Price))
-                query = query.Where(s => s.Price.Contains(product.Price));
+            if (!string.IsNullOrWhiteSpace(Convert.ToString(product.Price)))
+                query = query.Where(s => Convert.ToString( s.Price).Contains((char)product.Price));
             return query;
         }
 
