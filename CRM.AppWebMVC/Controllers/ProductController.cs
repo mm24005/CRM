@@ -1,4 +1,5 @@
 ﻿using CRM.DTOs.ProductDTOs;
+using CRM.DTOs.ProuctDTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.AppWebMVC.Controllers
