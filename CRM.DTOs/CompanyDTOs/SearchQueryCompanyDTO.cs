@@ -11,12 +11,6 @@ namespace CRM.DTOs.CompanyDTOs
     {
         [Display(Name = "Nombre")]
         public string? Name_Like { get; set; }
-        [Display(Name = "Direccion")]
-        public string? Address_Like { get; set; }
-        [Display(Name = "Telefono")]
-        public string? Telephone_Like { get; set; }
-        [Display(Name = "Email")]
-        public string? Email_Like { get; set; }
         [Display(Name = "Pagina")]
         public int Skip { get; set; }
         [Display(Name = "CantReg X Pagina")]

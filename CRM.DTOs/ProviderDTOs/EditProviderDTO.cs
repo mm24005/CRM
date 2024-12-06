@@ -6,6 +6,7 @@ namespace CRM.DTOs.ProviderDTOs
     {
         public EditProviderDTO(GetIdResultProviderDTO get)
         {
+            Id = get.Id;
             Name = get.Name;
             Empresa = get.Empresa;
             Email = get.Email;
@@ -15,7 +16,12 @@ namespace CRM.DTOs.ProviderDTOs
         {
             Name = string.Empty;
             Empresa = string.Empty;
+            Email = string.Empty;
+            Phone = string.Empty;
         }
+
+        [Required(ErrorMessage = "El campo Id es obligatorio.")]
+        public int Id { get; set; }
 
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "El campo Nombre es obligatorio.")]
